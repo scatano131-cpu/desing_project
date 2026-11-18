@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Insignia Digital - MiportalU UNAB"><title>MiportalU - Insignia Digital | Universidad UNAB</title><link rel="icon" href="img/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#8600dd"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="css/portal.css"></head>
+<body class="pg"><a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top-header hdr-purple">
+    <a class="user-profile" href="wireframe5.html" aria-label="Ir a mi perfil"><div class="avatar-circle"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#ccc"/><circle cx="32" cy="23" r="10.5" fill="#e2e2e2"/><path d="M12 58C12 44 52 44 52 58Z" fill="#e2e2e2"/></svg></div><div class="user-text"><span class="user-name">Usuario</span><span class="user-role">Perfil</span></div></a>
+    <div class="header-brand" id="brand">
+      <button class="brand-btn" id="brandBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="brandMenu" aria-label="Menú de MiportalU"><img class="brand-logo" src="img/logo-miportalu-recorte.png" alt="MiportalU"><svg class="chevron-down" viewBox="0 0 36 20" fill="none" aria-hidden="true"><path d="M3 3L18 16.5 33 3" stroke="#e9a427" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <nav class="menu" id="brandMenu" role="menu" aria-label="Navegación principal"><a href="wireframe2.html" role="menuitem">Inicio</a><a href="wireframe3.html" role="menuitem">Horas libres</a><a href="wireframe4.html" role="menuitem">Reservas</a><a href="wireframe26.html" role="menuitem">Apoyo Académico</a><a href="wireframe27.html" role="menuitem">Trámites</a><a href="wireframe28.html" role="menuitem">Investigación</a><a href="wireframe5.html" role="menuitem">Perfil</a><a href="wireframe7.html" role="menuitem">Cumplimiento curricular</a><a href="wireframe8.html" role="menuitem">Más noticias</a><a href="wireframe24.html" role="menuitem">Acerca de</a><hr role="separator"><a href="wireframe1.html" role="menuitem" class="salir">Cerrar sesión</a></nav>
+    </div>
+  </header>
+<section class="pg-banner purple"><small>Internacionalización</small><h1>Insignia Digital</h1></section>
+<main id="contenido" class="wrap"><div class="narrow" style="padding-top:1vw">
+<h2 class="h2g" style="margin-top:0">Reconocemos tu talento global: ¡Solicita tu Insignia Intercultural UNAB!</h2>
+<p>Tu experiencia internacional y compromiso con la diversidad tienen un valor incalculable. La Universidad te ofrece la oportunidad de validar tus competencias interculturales ante futuros empleadores a través de nuestras insignias digitales gratuitas.</p>
+<p>Enriquece tu perfil profesional y demuestra tu preparación global accediendo a:</p>
+<div class="lvl"><h3>Navegante Intercultural</h3><span>al obtener 60 puntos.</span></div>
+<div class="lvl"><h3>Embajador Intercultural</h3><span>al obtener 100 puntos.</span></div></div>
+<div class="bandg"><div>¿Cómo obtener tu Insignia?</div></div>
+<div class="narrow" style="padding-top:0"><p>Simplemente participa en las actividades interculturales de la UNAB como: Plan Padrino, World Café, misiones académicas, doble titulación o prácticas internacionales, entre otras.</p>
+<p>Consulta aquí el listado completo de actividades que suman puntos.</p>
+<p><button class="btn btn-p" id="con" type="button" style="width:min(28vw,100%);min-width:220px">Consultar</button></p>
+<div class="barra-o nota"><p><b class="nt">Recuerda:</b><br>Si logras la insignia Navegante, solo necesitarás 40 puntos adicionales para ser Embajador.</p></div></div>
+<div class="bandg"><div>¿Cómo la debes solicitar?</div></div>
+<div class="narrow" style="padding-top:0"><p>Reúne tus evidencias: Identifica las actividades que completaste y reúne los soportes.Para formalizar tu solicitud ingresa <b>aquí.</b></p>
+<div class="barra-o nota"><p><b class="nt">¿Tienes dudas?</b><br>Escribe a la Oficina de Relaciones Nacionales e Internacionales al correo: <b style="white-space:nowrap">asistente-ori@unab.edu.co</b></p></div></div></main>
+<footer class="pg-footer">Universidad Autónoma de Bucaramanga | © Todos los derechos reservados</footer>
+<script src="js/portal.js" defer></script>
+<script>
+const A=[['Plan Padrino',20],['World Café',10],['Misiones académicas',30],['Doble titulación',40],['Prácticas internacionales',50],['Intercambio académico',50],['Curso de idiomas de la UNAB',15]];
+document.getElementById('con').onclick=()=>{const m=Portal.modal('Actividades que suman puntos','<p style="color:#777;font-size:13px">Puntos de ejemplo para el prototipo. Marca las actividades que has realizado y mira tu avance.</p>'+A.map((a,i)=>'<label><input type="checkbox" data-p="'+a[1]+'"> '+a[0]+'<b>'+a[1]+' pts</b></label>').join('')+'<p><b id="tot">Total: 0 puntos</b></p><div class="prog"><i id="pb2"></i></div><p id="niv" style="font-weight:700;color:#8600dd">Aún no alcanzas una insignia.</p>');
+ m.addEventListener('change',()=>{const t=[...m.querySelectorAll('input:checked')].reduce((s,x)=>s+ +x.dataset.p,0);m.querySelector('#tot').textContent='Total: '+t+' puntos';m.querySelector('#pb2').style.width=Math.min(100,t)+'%';m.querySelector('#niv').textContent=t>=100?'🏅 ¡Embajador Intercultural!':t>=60?'🏅 ¡Navegante Intercultural! Te faltan '+(100-t)+' para Embajador.':'Te faltan '+(60-t)+' puntos para Navegante Intercultural.'})};</script></body></html>

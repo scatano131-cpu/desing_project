@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiportalU · Perfil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --naranja: #e9a427;
+    --morado: #8600dd;
+    --texto: #2b2b2b;
+    --gris-avatar: #cacaca;
+    --gris-silueta: #dfdfdf;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Open Sans', 'Noto Sans', 'Segoe UI', Arial, sans-serif;
+    color: var(--texto);
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .header {
+    height: 158px;
+    padding: 0 max(24px, calc((100% - 1174px) / 2));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(
+      to bottom,
+      #ffffff 0%, #ffffff 22%, #fdfcf8 50%, #f7eedc 76%,
+      #f1e0c1 89%, #eed7ae 95%, #e9c686 100%
+    );
+  }
+
+  .header__user { display: flex; align-items: center; gap: 15px; }
+  .header__user .avatar { width: 58px; height: 58px; }
+  .header__nombre { font-size: 18px; line-height: 20px; color: var(--texto); }
+  .header__perfil { font-size: 14px; line-height: 18px; color: var(--naranja); }
+
+  .header__brand { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .header__brand img { height: 47px; width: auto; display: block; }
+  .header__brand svg { width: 47px; height: 24px; display: block; }
+
+  .avatar { display: block; border-radius: 50%; flex-shrink: 0; }
+
+  .banda {
+    height: 95px;
+    background: var(--naranja);
+    box-shadow: inset 0 3px 3px rgba(120, 70, 0, .22);
+  }
+
+  .contenedor { width: min(1198px, 100% - 48px); margin: 0 auto; }
+
+  .perfil { display: flex; align-items: flex-start; gap: 12px; margin-top: -49px; }
+  .perfil .avatar { width: 90px; height: 90px; }
+  .perfil__info { padding-top: 13px; }
+  .perfil__nombre { font-size: 25px; line-height: 30px; font-weight: 600; color: var(--morado); }
+  .perfil__carrera { margin-top: 7px; font-size: 17.5px; line-height: 24px; color: var(--naranja); }
+
+  .progreso {
+    margin-top: 30px;
+    height: 20px;
+    border-radius: 10px;
+    background: var(--morado);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .25);
+    overflow: hidden;
+  }
+  .progreso__relleno {
+    width: 13.3%;
+    height: 100%;
+    background: var(--naranja);
+    border-radius: 10px;
+  }
+
+  .horas {
+    margin-top: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 28px;
+  }
+  .horas__texto { font-size: 21px; color: var(--morado); }
+  .horas__texto b { color: var(--naranja); font-weight: 700; }
+  .horas__historial { font-size: 18px; color: var(--texto); }
+  .horas__historial:hover { color: var(--morado); }
+
+  .info-titulo { margin-top: 57px; font-size: 18px; line-height: 24px; color: var(--texto); }
+
+  .tarjetas {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .tarjeta {
+    height: 169px;
+    padding: 0 12px;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 17px;
+    line-height: 25px;
+    color: #fff;
+  }
+  .tarjeta--naranja { background: var(--naranja); }
+  .tarjeta--morada  { background: var(--morado); }
+
+  .tarjeta--naranja .etiqueta { color: var(--morado); }
+  .tarjeta--naranja .valor { font-weight: 600; }
+
+  .tarjeta--morada .etiqueta { color: var(--naranja); }
+  .tarjeta--morada .consultar { display: block; font-size: 28px; line-height: 36px; font-weight: 400; }
+  .tarjeta--morada .consultar:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  main { padding-bottom: 64px; }
+
+  .footer {
+    margin-top: auto;
+    height: 68px;
+    background: var(--morado);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 900px) {
+    .tarjetas { grid-template-columns: 1fr; }
+    .tarjeta { height: auto; min-height: 140px; padding: 24px 20px; }
+  }
+  @media (max-width: 600px) {
+    .header { height: 120px; }
+    .header__brand img { height: 32px; }
+    .header__brand svg { width: 32px; height: 16px; }
+    .header__nombre { display: none; }
+    .header__perfil { display: none; }
+    .banda { height: 70px; }
+    .perfil { margin-top: -40px; }
+    .perfil__nombre { font-size: 21px; }
+    .perfil__carrera { font-size: 15px; }
+    .horas__texto { font-size: 17px; }
+    .horas__historial { font-size: 15px; }
+  }
+
+  .pf-grid { margin-top: 48px; display: grid; grid-template-columns: 1.34fr 1.69fr 1fr; gap: 12px; align-items: start; }
+  .pf-h { font-size: 18px; line-height: 24px; font-weight: 400; color: var(--texto); margin-bottom: 14px; }
+  .pf-calc { background: var(--gris-avatar); border-radius: 28px; padding: 26px 27px 26px 21px; display: flex; flex-direction: column; gap: 14px; }
+  .pf-row { display: flex; gap: 14px; align-items: center; }
+  .pf-pill { flex: 1; min-width: 0; height: 44px; padding: 0 23px; border-radius: 16px; background: var(--morado); color: #fff; display: flex; align-items: center; font-size: 15px; }
+  .pf-box { width: 60px; height: 44px; border: 0; border-radius: 12px; background: #efefef; box-shadow: 0 2px 3px rgba(0,0,0,.25); text-align: center; font: 600 15px 'Open Sans', Arial, sans-serif; color: #333; }
+  .pf-box::placeholder { color: #b3b3b3; }
+  .pf-box[aria-invalid="true"] { outline: 2px solid #c0392b; }
+  .pf-out { margin-left: 79px; display: flex; flex-direction: column; gap: 14px; }
+  .pf-pill--out { flex: none; height: 36px; padding: 0 15px 0 12px; border-radius: 12px; justify-content: space-between; font-size: 14px; font-weight: 600; }
+  .pf-pill--out span { color: var(--naranja); } .pf-pill--out b { color: #fff; }
+  .pf-btn { width: 188px; height: 36px; border: 0; border-radius: 18px; background: var(--naranja); color: #fff; font: 700 15px 'Open Sans', Arial, sans-serif; cursor: pointer; transition: transform .15s, filter .15s, box-shadow .15s; }
+  .pf-btn:hover { transform: translateY(-1px); filter: brightness(1.07); box-shadow: 0 4px 10px rgba(0,0,0,.2); }
+  .pf-msg { margin: -2px 0 0 79px; min-height: 18px; font-size: 13.5px; line-height: 18px; font-weight: 600; color: var(--texto); }
+  .pf-msg.ok { color: #1b6e1b; } .pf-msg.no { color: #a3140b; }
+  .pf-link { margin-left: 79px; font-size: 13px; color: var(--morado); text-decoration: underline; text-underline-offset: 3px; }
+  .pf-link:hover { color: var(--naranja); }
+  .pf-list { display: flex; flex-direction: column; gap: 19px; }
+  .pf-item { height: 58px; padding: 0 19px; border-radius: 29px; display: grid; grid-template-columns: minmax(0,1fr) auto auto; align-items: center; gap: 14px; transition: transform .15s, box-shadow .15s; }
+  .pf-item b { font-size: 22px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pf-item time { color: #fff; font-size: 15px; } .pf-item span { font-size: 15px; min-width: 125px; }
+  .pf-item--o { background: var(--naranja); } .pf-item--o b, .pf-item--o span { color: var(--morado); }
+  .pf-item--m { background: var(--morado); } .pf-item--m b, .pf-item--m span { color: var(--naranja); }
+  .pf-item:hover, .pf-item:focus-visible { transform: translateX(6px); box-shadow: 0 6px 14px rgba(0,0,0,.22); }
+  .pf-detail { height: 83px; border-radius: 20px; background: var(--gris-avatar); color: var(--morado); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; transition: background .15s, transform .15s; }
+  .pf-detail:hover, .pf-detail:focus-visible { background: #bdbdbd; transform: translateY(-2px); }
+  .pf-rank { display: block; margin-top: 38px; padding: 12px 12px 14px; border-radius: 14px; background: var(--morado); color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.18); transition: transform .15s, box-shadow .15s; }
+  .pf-rank small { display: block; font-size: 15px; line-height: 20px; }
+  .pf-rank h3 { font-size: 25px; line-height: 28px; font-weight: 700; }
+  .pf-rank strong { display: block; text-align: center; color: var(--naranja); font-size: 64px; line-height: 76px; font-weight: 700; }
+  .pf-rank p { text-align: center; font-size: 15px; }
+  .pf-rank em { display: block; text-align: center; font-style: normal; font-size: 13px; color: var(--naranja); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .2s, opacity .2s, margin .2s; }
+  .pf-rank:hover, .pf-rank:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,.28); }
+  .pf-rank:hover em, .pf-rank:focus-visible em { max-height: 24px; opacity: 1; margin-top: 6px; }
+  @media (max-width: 900px) {
+    .pf-grid { grid-template-columns: 1fr; gap: 28px; }
+    .pf-rank { margin-top: 0; }
+    .pf-out, .pf-msg, .pf-link { margin-left: 0; }
+  }
+  @media (max-width: 600px) {
+    .pf-item { grid-template-columns: 1fr auto; height: auto; min-height: 58px; padding: 10px 18px; border-radius: 26px; gap: 2px 10px; }
+    .pf-item b { font-size: 18px; } .pf-item span { grid-column: 1 / -1; min-width: 0; }
+    .pf-pill { padding: 0 14px; font-size: 14px; }
+  }
+</style>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#8600dd"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="css/portal.css"></head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="silueta" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="50" fill="#cacaca"/>
+        <clipPath id="recorte"><circle cx="50" cy="50" r="50"/></clipPath>
+        <g clip-path="url(#recorte)" fill="#dfdfdf">
+          <circle cx="50" cy="40" r="19"/>
+          <ellipse cx="50" cy="100" rx="35" ry="36"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="top-header hdr-gold">
+    <a class="user-profile" href="wireframe5.html" aria-label="Ir a mi perfil"><div class="avatar-circle"><svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#ccc"/><circle cx="32" cy="23" r="10.5" fill="#e2e2e2"/><path d="M12 58C12 44 52 44 52 58Z" fill="#e2e2e2"/></svg></div><div class="user-text"><span class="user-name">Usuario</span><span class="user-role">Perfil</span></div></a>
+    <div class="header-brand" id="brand">
+      <button class="brand-btn" id="brandBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="brandMenu" aria-label="Menú de MiportalU"><img class="brand-logo" src="img/logo-miportalu-recorte.png" alt="MiportalU"><svg class="chevron-down" viewBox="0 0 36 20" fill="none" aria-hidden="true"><path d="M3 3L18 16.5 33 3" stroke="#e9a427" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <nav class="menu" id="brandMenu" role="menu" aria-label="Navegación principal"><a href="wireframe2.html" role="menuitem">Inicio</a><a href="wireframe3.html" role="menuitem">Horas libres</a><a href="wireframe4.html" role="menuitem">Reservas</a><a href="wireframe26.html" role="menuitem">Apoyo Académico</a><a href="wireframe27.html" role="menuitem">Trámites</a><a href="wireframe28.html" role="menuitem">Investigación</a><a href="wireframe5.html" role="menuitem" aria-current="page">Perfil</a><a href="wireframe7.html" role="menuitem">Cumplimiento curricular</a><a href="wireframe8.html" role="menuitem">Más noticias</a><a href="wireframe24.html" role="menuitem">Acerca de</a><hr role="separator"><a href="wireframe1.html" role="menuitem" class="salir">Cerrar sesión</a></nav>
+    </div>
+  </header>
+
+  <div class="banda"></div>
+
+  <main id="contenido" class="contenedor">
+
+    <section class="perfil">
+      <svg class="avatar" viewBox="0 0 100 100" aria-hidden="true"><use href="#silueta"/></svg>
+      <div class="perfil__info">
+        <h1 class="perfil__nombre">Usuario</h1>
+        <p class="perfil__carrera">Estudiante de ingeniería de sistemas</p>
+      </div>
+    </section>
+
+    <div class="progreso" role="progressbar" aria-label="Horas libres completadas">
+      <div class="progreso__relleno"></div>
+    </div>
+
+    <div class="horas">
+      <p class="horas__texto">Horas libres completadas: <b>10</b></p>
+      <a class="horas__historial" href="wireframe6.html">Historial</a>
+    </div>
+
+    <h2 class="info-titulo" style="font-weight:400">Información personal:</h2>
+
+    <section class="tarjetas">
+      <article class="tarjeta tarjeta--naranja">
+        <div><span class="etiqueta">Nombre:</span> <span class="valor">Usuario</span></div>
+        <div><span class="etiqueta">Último Semestre Matriculado:</span> <span class="valor">2028-02</span></div>
+        <div><span class="etiqueta">ID:</span> <span class="valor">U00197495</span></div>
+        <div><span class="etiqueta">Correo electrónico:</span> <span class="valor">Uunab8@unab.edu.co</span></div>
+      </article>
+
+      <article class="tarjeta tarjeta--morada">
+        <div class="etiqueta">Cumplimiento curricular:</div>
+        <a class="consultar" href="wireframe7.html">Consultar</a>
+      </article>
+
+      <article class="tarjeta tarjeta--naranja">
+        <div><span class="etiqueta">Promedio en el semestre:</span> <span class="valor">3.5</span></div>
+        <div><span class="etiqueta">Promedio global:</span> <span class="valor">3.2</span></div>
+        <div><span class="etiqueta">Materia más alta:</span> <span class="valor">Álgebra lineal</span></div>
+        <div><span class="etiqueta">Materia más baja:</span> <span class="valor">Cálculo de una variable</span></div>
+      </article>
+    </section>
+
+
+    <div class="pf-grid">
+      <section aria-labelledby="hCalc">
+        <h2 class="pf-h" id="hCalc">Calculadora de notas:</h2>
+        <div class="pf-calc">
+          <div class="pf-row"><label class="pf-pill" for="c1">Total Primer Corte</label><input class="pf-box" id="c1" inputmode="decimal" placeholder="0,0" autocomplete="off" aria-describedby="calcMsg"></div>
+          <div class="pf-row"><label class="pf-pill" for="c2">Total Segundo Corte</label><input class="pf-box" id="c2" inputmode="decimal" placeholder="0,0" autocomplete="off" aria-describedby="calcMsg"></div>
+          <div class="pf-out">
+            <div class="pf-pill pf-pill--out"><span>Nota final:</span><b id="nf">0,0</b></div>
+            <div class="pf-pill pf-pill--out"><span>Nota necesaria para pasar:</span><b id="nn">3,0</b></div>
+            <button class="pf-btn" id="btnCalc" type="button">Calcular</button>
+          </div>
+          <p class="pf-msg" id="calcMsg" role="status" aria-live="polite"></p>
+          <a class="pf-link" href="wireframe7.html">Ver cumplimiento curricular →</a>
+        </div>
+      </section>
+
+      <section aria-labelledby="hHist">
+        <h2 class="pf-h" id="hHist">Historial de horas libres:</h2>
+        <div class="pf-list">
+          <a class="pf-item pf-item--o" href="wireframe6.html"><b>Teoría del parche</b><time datetime="2026-10-02">02/10/2026</time><span>Horas Obtenidas: 2</span></a>
+          <a class="pf-item pf-item--m" href="wireframe6.html"><b>Taller de parla</b><time datetime="2026-09-16">16/09/2026</time><span>Horas Obtenidas: 4</span></a>
+          <a class="pf-item pf-item--o" href="wireframe6.html"><b>Karaoke UNAB</b><time datetime="2026-08-12">12/08/2026</time><span>Horas Obtenidas: 2</span></a>
+          <a class="pf-detail" href="wireframe6.html">Ver detalle</a>
+        </div>
+      </section>
+
+      <a class="pf-rank" href="wireframe3.html" aria-label="Ranking actual: 890 del top global de la Universidad. Ver actividades de horas libres">
+        <small>Horas Libres</small>
+        <h3>Su Ranking Actual</h3>
+        <strong id="rankN" data-n="890" aria-hidden="true">890</strong>
+        <p>Del top global de la Universidad</p>
+        <em>Ver actividades disponibles →</em>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    Universidad Autónoma de Bucaramanga | © Todos los derechos reservados
+  </footer>
+
+<script>
+(function () {
+  const $ = id => document.getElementById(id), PESO = [0.5, 0.5], PASA = 3;       // 2 cortes de 50 % · se aprueba con 3,0
+  const fmt = n => (Math.round(n * 100) / 100).toFixed(2).replace(/0$/, '').replace('.', ',');
+  const num = v => { v = v.trim().replace(',', '.'); if (v === '') return null; const n = Number(v); return isFinite(n) ? n : NaN; };
+  function calc() {
+    const inp = [$('c1'), $('c2')], v = inp.map(i => num(i.value)), m = $('calcMsg');
+    const say = (t, c) => { m.textContent = t; m.className = 'pf-msg ' + (c || ''); };
+    let bad = false;
+    inp.forEach((i, k) => { const x = v[k], inv = x !== null && (isNaN(x) || x < 0 || x > 5); i.setAttribute('aria-invalid', inv); if (inv) bad = true; });
+    if (bad) return say('Escribe notas entre 0,0 y 5,0.', 'no');
+    if (v.every(x => x === null)) { $('nf').textContent = '0,0'; $('nn').textContent = fmt(PASA); return say('Escribe al menos una nota para calcular.'); }
+    let acc = 0, falta = 0;
+    v.forEach((x, k) => { if (x === null) falta += PESO[k]; else acc += x * PESO[k]; });
+    $('nf').textContent = fmt(acc);
+    if (falta === 0) {
+      $('nn').textContent = '—';
+      return acc >= PASA ? say('¡Aprobaste! Tu nota final es ' + fmt(acc) + '.', 'ok') : say('Con esas notas la final es ' + fmt(acc) + ' y no alcanza ' + fmt(PASA) + '.', 'no');
+    }
+    const need = (PASA - acc) / falta;
+    if (need <= 0) { $('nn').textContent = '0,0'; say('¡Ya tienes la nota para pasar! Acumulas ' + fmt(acc) + '.', 'ok'); }
+    else if (need > 5) { $('nn').textContent = fmt(need); say('Necesitarías ' + fmt(need) + ' en el corte que falta y el máximo es 5,0: ya no alcanzas ' + fmt(PASA) + '.', 'no'); }
+    else { $('nn').textContent = fmt(need); say('Acumulas ' + fmt(acc) + '. Necesitas ' + fmt(need) + ' en el corte que falta para pasar con ' + fmt(PASA) + '.', 'ok'); }
+  }
+  $('btnCalc').addEventListener('click', calc);
+  [$('c1'), $('c2')].forEach(i => i.addEventListener('keydown', e => { if (e.key === 'Enter') calc(); }));
+  const r = $('rankN'), T = +r.dataset.n;                                          // el ranking sube contando
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let t0 = null; const step = t => { if (t0 === null) t0 = t; const p = Math.min(1, (t - t0) / 900); r.textContent = Math.round(T * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }
+})();
+</script>
+<script src="js/portal.js" defer></script></body>
+</html>
